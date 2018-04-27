@@ -16,6 +16,7 @@ namespace Library.DAL.UnitOfWork
         private MagazineRepository _magazineRepository;
         private BookRepository _bookRepository;
         private PublicHouseRepository _publicHouseRepository;
+        private IAuthorRepository _authorRepository;
  
 
         public LibraryUnitOfWork(LibraryContext context)
@@ -68,6 +69,18 @@ namespace Library.DAL.UnitOfWork
                     _publicHouseRepository = new PublicHouseRepository(_dbContext);
                 }
                 return _publicHouseRepository;
+            }
+        }
+
+        public IAuthorRepository Authors
+        {
+            get
+            {
+                if (_authorRepository == null)
+                {
+                    _authorRepository = new AuthorRepository(_dbContext);
+                }
+                return _authorRepository;
             }
         }
 

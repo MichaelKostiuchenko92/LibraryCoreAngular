@@ -21,12 +21,24 @@ namespace Library.DAL.Migrations
                 .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Library.DAL.Models.Author", b =>
+                {
+                    b.Property<int>("AuthorId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AuthorName");
+
+                    b.Property<int>("Year");
+
+                    b.HasKey("AuthorId");
+
+                    b.ToTable("Authors");
+                });
+
             modelBuilder.Entity("Library.DAL.Models.Book", b =>
                 {
                     b.Property<int>("BookId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AuthorName");
 
                     b.Property<string>("Name");
 
@@ -39,15 +51,24 @@ namespace Library.DAL.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("Library.DAL.Models.BookAuthor", b =>
+                {
+                    b.Property<int>("BookId");
+
+                    b.Property<int>("AuthorId");
+
+                    b.HasKey("BookId", "AuthorId");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("BookAuthor");
+                });
+
             modelBuilder.Entity("Library.DAL.Models.BookPublicHouse", b =>
                 {
                     b.Property<int>("BookId");
 
                     b.Property<int>("PublicHouseId");
-
-                    b.Property<int>("Author_Id");
-
-                    b.Property<int>("Book_Id");
 
                     b.HasKey("BookId", "PublicHouseId");
 
@@ -104,6 +125,19 @@ namespace Library.DAL.Migrations
                     b.HasKey("PublicHouseId");
 
                     b.ToTable("PublicHouses");
+                });
+
+            modelBuilder.Entity("Library.DAL.Models.BookAuthor", b =>
+                {
+                    b.HasOne("Library.DAL.Models.Author", "Author")
+                        .WithMany("BookAuthors")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Library.DAL.Models.Book", "Book")
+                        .WithMany("BookAuthors")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Library.DAL.Models.BookPublicHouse", b =>

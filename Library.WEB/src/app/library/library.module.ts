@@ -18,6 +18,7 @@ import { MagazineService } from './magazine/magazine.service';
 import { BookService } from './book/book.service';
 import { PublicHouseService } from './public-house/public-house.service';
 import { AllLibraryService } from './all-library/all-library.service';
+import { AuthorService } from './author/author.service';
 
 //components
 import { BrochureComponent } from './brochure/brochure.component';
@@ -26,6 +27,7 @@ import { BookComponent } from './book/book.component';
 import { MagazineComponent } from './magazine/magazine.component';
 import { PublicHouseComponent } from './public-house/public-house.component';
 import { AllLibraryComponent } from './all-library/all-library.component';
+import { AuthorComponent } from './author/author.component';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { AllLibraryComponent } from './all-library/all-library.component';
     BookComponent,
     MagazineComponent,
     PublicHouseComponent,
-    AllLibraryComponent
+    AllLibraryComponent,
+    AuthorComponent
   ],
 
   providers: [
@@ -54,7 +57,8 @@ import { AllLibraryComponent } from './all-library/all-library.component';
     MagazineService,
     BookService,
     PublicHouseService,
-    AllLibraryService
+    AllLibraryService,
+    AuthorService
   ]
 })
 export class LibraryModule { }

@@ -1,3 +1,4 @@
+import { Author } from './../author/author.model';
 import { PublicHouse } from './../public-house/public-house.model';
 
 export class Book {
@@ -7,5 +8,7 @@ export class Book {
         public authorName?: string,
         public yearOfPublishing?: number,
         public publicHouses?: PublicHouse[],
-        public publicHousesFormated?: string ){}
+        public publicHousesFormated?: string,
+        public authors?: Author[],
+        public authorsFormated?: string ){}
 }

@@ -12,15 +12,16 @@ namespace Library.DAL.Models
         [Key]
         public int BookId { get; set; }
         public string Name { get; set; }
-        public string AuthorName { get; set; }
         public int YearOfPublishing { get; set; }
         public LibraryType Type { get; set; }
 
-        public  List<BookPublicHouse> BookPublicHouses { get; set; }
+        public List<BookPublicHouse> BookPublicHouses { get; set; }
+        public List<BookAuthor> BookAuthors { get; set; }
 
         public Book()
         {
             BookPublicHouses = new List<BookPublicHouse>();
+            BookAuthors = new List<BookAuthor>();
         }
 
     }

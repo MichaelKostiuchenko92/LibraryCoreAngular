@@ -17,32 +17,32 @@ namespace Library.WEB.Controllers
   [Route("api/Brochure")]
   public class BrochureController : Controller
   {
-    private BrochureService service;
+    private BrochureService _service;
 
     public BrochureController(BrochureService service)
     {
-      this.service = service;
+       _service = service;
     }
 
     // GET: api/Brochure
     [HttpGet]
     public async Task<IEnumerable<BrochureView>> Get()
     {
-      return await service.GetBrochureViewModelList();
+      return await _service.GetBrochureViewModelList();
     }
 
     // GET: api/Brochure/5
     [HttpGet("{id}")]
     public BrochureView Get(int id)
     {
-      return service.GetBrochureView(id);
+      return _service.GetBrochureView(id);
     }
 
     // POST: api/Brochure
     [HttpPost]
     public IActionResult Post([FromBody]BrochureView brochureView)
     {
-      service.CreateBrochure(brochureView);
+      _service.CreateBrochure(brochureView);
       return Ok(brochureView);
     }
 
@@ -50,7 +50,7 @@ namespace Library.WEB.Controllers
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody]BrochureView brochureView)
     {
-      service.UpdateBrochure(brochureView);
+      _service.UpdateBrochure(brochureView);
       return Ok(brochureView);
     }
 
@@ -58,7 +58,7 @@ namespace Library.WEB.Controllers
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-      service.DeleteBrochure(id);
+      _service.DeleteBrochure(id);
       return Ok(id);
     }
   }

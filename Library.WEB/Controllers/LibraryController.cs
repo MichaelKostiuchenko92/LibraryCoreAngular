@@ -13,18 +13,18 @@ namespace Library.WEB.Controllers
   [Route("api/Library")]
   public class LibraryController : Controller
   {
-    private LibraryService service;
+    private LibraryService _service;
 
     public LibraryController(LibraryService service)
     {
-      this.service = service;
+      _service = service;
     }
 
     // GET: api/Library
     [HttpGet]
     public async  Task<IEnumerable<LibraryView>> Get()
     {
-      return await service.GetLibraryViews();
+      return await _service.GetLibraryViews();
     }
   }
 }

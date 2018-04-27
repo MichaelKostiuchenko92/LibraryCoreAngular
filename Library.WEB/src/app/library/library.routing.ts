@@ -10,6 +10,7 @@ import { BookComponent } from './book/book.component';
 import { PublicHouseComponent } from './public-house/public-house.component';
 import { MagazineComponent } from './magazine/magazine.component';
 import { AllLibraryComponent } from './all-library/all-library.component';
+import { AuthorComponent } from './author/author.component';
 
 const routes: Routes = [
     {
@@ -20,6 +21,7 @@ const routes: Routes = [
         { path: 'magazine', component: MagazineComponent, data: { title: "Magazines" } },
         { path: 'publichouse', component: PublicHouseComponent, data: { title: "Publication Houses" } },
         { path: 'alllibrary', component: AllLibraryComponent, data: { title: "All Library" } },
+        { path: 'author', component: AuthorComponent, data: { title: "Authors" } },
       ]
     }
   ];

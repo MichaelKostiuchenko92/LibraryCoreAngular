@@ -1,9 +1,12 @@
+import { AuthorService } from './../author/author.service';
+import { Author } from './../author/author.model';
 import { PublicHouseService } from './../public-house/public-house.service';
 import { PublicHouse } from './../public-house/public-house.model';
 import { Book } from './book.model';
+import { BookService } from './book.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BookService } from './book.service';
+
 import { resetFakeAsyncZone, fakeAsync } from '@angular/core/testing';
 
 
@@ -25,11 +28,12 @@ import { Button } from "@progress/kendo-angular-buttons";
 export class BookComponent implements OnInit {
   editedBook: Book;   
   public view: Observable<GridDataResult>;         
-  loaded: boolean = true;
-  jsonBackUpText: string;
+
+
   selectedIds: number[] = Array<number>();
   bookService: BookService;
   public publicHouseList: PublicHouse[];
+  public authorList: Author[];
   public gridState: State = {
     sort: [],
     skip: 0,
@@ -52,6 +56,8 @@ export class BookComponent implements OnInit {
     this.bookService.getPublicHouseList().subscribe(data => {
       this.publicHouseList = data;
     });
+    this.bookService.getAuthorList().subscribe(data => {
+      this.authorList = data;});
     this.bookService.read();
 
   }

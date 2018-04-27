@@ -19,6 +19,7 @@ namespace Library.WEB.ServiceExtentions
       service.AddSingleton<MagazineService>();
       service.AddSingleton<BookService>();
       service.AddSingleton<PublicHouseService>();
+      service.AddSingleton<AuthorService>();
       service.AddSingleton<LibraryService>();
       service.AddSingleton(provider =>
       {

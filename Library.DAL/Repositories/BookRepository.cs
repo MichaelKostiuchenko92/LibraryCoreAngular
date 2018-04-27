@@ -22,7 +22,10 @@ namespace Library.DAL.Repositories
         {
             return await _dbContext.Books
                 .Include(b => b.BookPublicHouses)
-                .ThenInclude(bph => bph.PublicHouse).ToListAsync();
+                .ThenInclude(bph => bph.PublicHouse)
+                .Include(b => b.BookAuthors)
+                .ThenInclude(ba => ba.Author)
+                .ToListAsync();
         }
 
         public Book Get(int id)

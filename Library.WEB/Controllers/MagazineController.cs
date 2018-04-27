@@ -16,32 +16,32 @@ namespace Library.WEB.Controllers
   [Route("api/Magazine")]
   public class MagazineController : Controller
   {
-    private MagazineService service;
+    private MagazineService _service;
 
     public MagazineController(MagazineService service)
     {
-      this.service = service;
+       _service = service;
     }
 
     // GET: api/Magazine
     [HttpGet]
     public async Task<IEnumerable<MagazineView>> Get()
     {
-      return await service.GetMagazineViewModelList();
+      return await _service.GetMagazineViewModelList();
     }
 
     // GET: api/Magazine/5
     [HttpGet("{id}")]
     public MagazineView Get(int id)
     {
-      return service.GetMagazineView(id);
+      return _service.GetMagazineView(id);
     }
 
     // POST: api/Magazine
     [HttpPost]
     public IActionResult Post([FromBody]MagazineView magazineView)
     {
-      service.CreateMagazine(magazineView);
+      _service.CreateMagazine(magazineView);
       return Ok(magazineView);
     }
 
@@ -49,7 +49,7 @@ namespace Library.WEB.Controllers
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody]MagazineView magazineView)
     {
-      service.UpdateMagazine(magazineView);
+      _service.UpdateMagazine(magazineView);
       return Ok(magazineView);
     }
 
@@ -57,7 +57,7 @@ namespace Library.WEB.Controllers
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-      service.DeleteMagazine(id);
+      _service.DeleteMagazine(id);
       return Ok(id);
     }
   }

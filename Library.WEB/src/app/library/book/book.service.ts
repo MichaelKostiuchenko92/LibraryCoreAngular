@@ -1,3 +1,4 @@
+import { Author } from './../author/author.model';
 import { PublicHouse } from './../public-house/public-house.model';
 import { Book } from './book.model';
 
@@ -101,6 +102,10 @@ export class BookService extends BehaviorSubject<any[]> {
 
   public getPublicHouseList() {
     return this.http.get('api/publichouse').pipe(map(res => <PublicHouse[]>res)); 
+  }
+
+  public getAuthorList() {
+    return this.http.get('api/author').pipe(map(res => <Author[]>res));
   }
 
   private serializeModels(data?: any): string {

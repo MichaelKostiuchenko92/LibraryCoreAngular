@@ -21,9 +21,18 @@
         <input [(ngModel)]="dataItem.name" kendoGridFocusable name="name" class="k-textbox" required/>
       </ng-template>
     </kendo-grid-column>
-    <kendo-grid-column field="authorName" title="Author">
+    <kendo-grid-column field="authorsFormated" title="Authors">
       <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-        <input [(ngModel)]="dataItem.authorName" kendoGridFocusable name="authorName" class="k-textbox" />
+        <kendo-multiselect #list
+                           [data]="authorList"
+                           [(ngModel)]="dataItem.authors"
+                           [ngModelOptions]="{standalone: true}"
+                           [filterable]="true"
+                            (valueChange)="multiselectValueChange($event)"
+                           textField="authorName"
+                           valueField="authorId"
+                           placeholder="Authors">
+        </kendo-multiselect>
       </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="yearOfPublishing" editor="numeric" title="Year">

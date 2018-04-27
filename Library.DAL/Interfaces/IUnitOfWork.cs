@@ -10,7 +10,7 @@ namespace Library.DAL.Interfaces
        IMagazineRepository Magazines { get; }
        IBookRepository Books { get; }
        IPublicHouseRepository PublicHouses { get;  }
-
+       IAuthorRepository Authors { get; }
 
         void Save();
     }

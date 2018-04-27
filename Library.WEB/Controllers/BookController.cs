@@ -13,32 +13,32 @@ namespace Library.WEB.Controllers
   [Route("api/Book")]
   public class BookController : Controller
   {
-    private  BookService service;
+    private  BookService _service;
 
     public BookController(BookService service)
     {
-      this.service = service;
+      _service = service;
     }
 
     // GET: api/Book
     [HttpGet]
     public async Task<IEnumerable<BookView>> Get()
     {
-      return await  service.GtBookViewModelList();
+      return await  _service.GtBookViewModelList();
     }
 
     // GET: api/Book/5
     [HttpGet("{id}")]
     public BookView Get(int id)
     {
-      return service.GetBookView(id);
+      return _service.GetBookView(id);
     }
 
     //// POST: api/Book
     [HttpPost]
     public IActionResult Post([FromBody]BookView bookView)
     {
-      service.CreateBook(bookView);
+      _service.CreateBook(bookView);
       return Ok(bookView);
     }
 
@@ -46,7 +46,7 @@ namespace Library.WEB.Controllers
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody]BookView bookView)
     {
-      service.UpdateBook(bookView);
+      _service.UpdateBook(bookView);
       return Ok(bookView);
     }
 
@@ -54,7 +54,7 @@ namespace Library.WEB.Controllers
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-      service.DeleteBook(id);
+      _service.DeleteBook(id);
       return Ok(id);
     }
   }

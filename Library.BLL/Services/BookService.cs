@@ -5,6 +5,7 @@ using Library.ViewModels.Enums;
 using Library.ViewModels.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,15 +48,18 @@ namespace Library.BLL.Services
             var book = _db.Books.Get(viewModel.BookId);
             book.BookId = parsedBook.BookId;
             book.Name = parsedBook.Name;
-            book.AuthorName = parsedBook.AuthorName;
-            UpdateAssociatedObject(book, parsedBook);
+            UpdateAssociatedObjects(book, parsedBook);
         }
-        public void UpdateAssociatedObject(Book bookToUpdate, Book viewModelBook)
+
+        public void UpdateAssociatedObjects(Book bookToUpdate, Book viewModelBook)
         {
             AddUpdatedHouses(bookToUpdate, viewModelBook);
             RemoveUpdatedHouses(bookToUpdate, viewModelBook);
+            AddUpdatedAuthors(bookToUpdate, viewModelBook);
+            RemoveUpdatedAuthors(bookToUpdate, viewModelBook);
             _db.Save();
         }
+
         private void AddUpdatedHouses(Book bookToUpdate, Book viewModelBook)
         {
             foreach (var houses in viewModelBook.BookPublicHouses)
@@ -67,17 +71,54 @@ namespace Library.BLL.Services
                 }
             }
         }
+
+        private void AddUpdatedAuthors(Book bookToUpdate, Book viewModelBook)
+        {
+            foreach (var authors in viewModelBook.BookAuthors)
+            {
+                var searchAuthors = bookToUpdate.BookAuthors.Find(b => b.AuthorId == authors.AuthorId);
+                if (searchAuthors == null)
+                {
+                    bookToUpdate.BookAuthors.Add(authors);
+                }
+            }
+        }
+
+        private void RemoveUpdatedAuthors(Book bookToUpdate, Book viewModelBook)
+        {
+            int countOfAuthors = bookToUpdate.BookAuthors.Count;
+            //bookToUpdate.BookPublicHouses.Except(viewModelBook.BookPublicHouses);
+            for (int i = 0; i < countOfAuthors; i++)
+            {
+                BookAuthor searchAuthor = null;
+                foreach (var viewModelAuthors in viewModelBook.BookAuthors)
+                {
+                    if (viewModelAuthors.AuthorId == bookToUpdate.BookAuthors[i].AuthorId)
+                    {
+                        searchAuthor = viewModelAuthors;
+                    }
+                }
+                if (searchAuthor == null)
+                {
+                    bookToUpdate.BookPublicHouses.Remove(bookToUpdate.BookPublicHouses[i]);
+                    i--;
+                    countOfAuthors--;
+                }
+            }
+        }
+
         private void RemoveUpdatedHouses(Book bookToUpdate, Book viewModelBook)
         {
             int countOfHouses = bookToUpdate.BookPublicHouses.Count;
+            //bookToUpdate.BookPublicHouses.Except(viewModelBook.BookPublicHouses);
             for (int i = 0; i < countOfHouses; i++)
             {
                 BookPublicHouse searchHouse = null;
-                foreach (var viewModelAuthors in viewModelBook.BookPublicHouses)
+                foreach (var viewModelHouses in viewModelBook.BookPublicHouses)
                 {
-                    if (viewModelAuthors.PublicHouseId == bookToUpdate.BookPublicHouses[i].PublicHouseId)
+                    if (viewModelHouses.PublicHouseId == bookToUpdate.BookPublicHouses[i].PublicHouseId)
                     {
-                        searchHouse = viewModelAuthors;
+                        searchHouse = viewModelHouses;
                     }
                 }
                 if (searchHouse == null)

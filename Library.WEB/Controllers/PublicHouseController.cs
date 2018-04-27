@@ -13,31 +13,31 @@ namespace Library.WEB.Controllers
   [Route("api/PublicHouse")]
   public class PublicHouseController : Controller
   {
-    private PublicHouseService service;
+    private PublicHouseService _service;
 
     public PublicHouseController(PublicHouseService service)
     {
-      this.service = service;
+       _service = service;
     }
     // GET: api/PublicHouse
     [HttpGet]
     public async Task<IEnumerable<PublicHouseView>> Get()
     {
-      return await service.GetPublicHouseViewModelList();
+      return await _service.GetPublicHouseViewModelList();
     }
 
     // GET: api/PublicHouse/5
     [HttpGet("{id}")]
     public PublicHouseView Get(int id)
     {
-      return service.GetPublicHouseView(id);
+      return _service.GetPublicHouseView(id);
     }
 
     // POST: api/PublicHouse
     [HttpPost]
     public IActionResult Post([FromBody]PublicHouseView publicHouseView)
     {
-      service.CreatePublicHouse(publicHouseView);
+      _service.CreatePublicHouse(publicHouseView);
       return Ok(publicHouseView);
     }
 
@@ -45,7 +45,7 @@ namespace Library.WEB.Controllers
     [HttpPut("{id}")]
     public IActionResult Put(int id, [FromBody]PublicHouseView publicHouseView)
     {
-      service.UpdatePublicHouse(publicHouseView);
+      _service.UpdatePublicHouse(publicHouseView);
       return Ok(publicHouseView);
     }
 
@@ -53,7 +53,7 @@ namespace Library.WEB.Controllers
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-      service.DeletePublicHouse(id);
+      _service.DeletePublicHouse(id);
       return Ok(id);
     }
   }

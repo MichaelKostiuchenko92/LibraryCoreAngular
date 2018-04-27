@@ -12,12 +12,9 @@ namespace Library.DAL.Models
         public int BookId { get; set; }
         public int PublicHouseId { get; set; }
 
-        [Required]
-        [ForeignKey("Book_Id")]
+
         public virtual Book Book { get; set; }
 
-        [Required]
-        [ForeignKey("Author_Id")]
         public virtual PublicHouse PublicHouse { get; set; }
 
         
