@@ -25,9 +25,9 @@ namespace Library.WEB.Controllers
 
     // GET: api/Magazine
     [HttpGet]
-    public IEnumerable<MagazineView> Get()
+    public async Task<IEnumerable<MagazineView>> Get()
     {
-      return service.GetMagazineViewModelList();
+      return await service.GetMagazineViewModelList();
     }
 
     // GET: api/Magazine/5

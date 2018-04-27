@@ -26,9 +26,9 @@ namespace Library.WEB.Controllers
 
     // GET: api/Brochure
     [HttpGet]
-    public IEnumerable<BrochureView> Get()
+    public async Task<IEnumerable<BrochureView>> Get()
     {
-      return service.GetBrochureViewModelList();
+      return await service.GetBrochureViewModelList();
     }
 
     // GET: api/Brochure/5

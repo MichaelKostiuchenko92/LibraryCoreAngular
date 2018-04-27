@@ -16,11 +16,11 @@ namespace Library.DAL.Models
         public int YearOfPublishing { get; set; }
         public LibraryType Type { get; set; }
 
-        public  ICollection<BookPublicHouse> BookPublicHouses { get; set; }
+        public  List<BookPublicHouse> BookPublicHouses { get; set; }
 
         public Book()
         {
-            BookPublicHouses = new Collection<BookPublicHouse>();
+            BookPublicHouses = new List<BookPublicHouse>();
         }
 
     }

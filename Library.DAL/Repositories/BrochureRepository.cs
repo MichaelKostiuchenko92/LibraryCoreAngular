@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
@@ -17,9 +18,9 @@ namespace Library.DAL.Repositories
             _dbCcontext = context;
         }
 
-        public IEnumerable<Brochure> GetAll()
+        public async Task<IEnumerable<Brochure>> GetAll()
         {
-            return _dbCcontext.Brochures;
+            return await _dbCcontext.Brochures.ToListAsync();
         }
 
         public Brochure Get(int id)

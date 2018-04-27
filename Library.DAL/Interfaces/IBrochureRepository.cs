@@ -1,12 +1,12 @@
 ﻿using Library.DAL.Models;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 
 namespace Library.DAL.Interfaces
 {
     public interface IBrochureRepository
     {
-        IEnumerable<Brochure> GetAll();
+        Task<IEnumerable<Brochure>> GetAll();
         Brochure Get(int id);
         void Create(Brochure item);
         void Update(Brochure item);

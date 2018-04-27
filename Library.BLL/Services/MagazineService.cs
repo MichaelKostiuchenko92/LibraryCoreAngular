@@ -6,6 +6,7 @@ using Library.ViewModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Library.BLL.Services
 {
@@ -20,9 +21,9 @@ namespace Library.BLL.Services
             this.mapper = mapper;
         }
 
-        public IEnumerable<MagazineView> GetMagazineViewModelList()
+        public async Task<IEnumerable<MagazineView>> GetMagazineViewModelList()
         {
-            IEnumerable<Magazine> magazines = _db.Magazines.GetAll();
+            IEnumerable<Magazine> magazines = await _db.Magazines.GetAll();
             return mapper.Map<IEnumerable<Magazine>, IEnumerable<MagazineView>>(magazines);
         }
 

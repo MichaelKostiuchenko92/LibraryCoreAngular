@@ -45,11 +45,15 @@ namespace Library.DAL.Migrations
 
                     b.Property<int>("PublicHouseId");
 
+                    b.Property<int>("Author_Id");
+
+                    b.Property<int>("Book_Id");
+
                     b.HasKey("BookId", "PublicHouseId");
 
                     b.HasIndex("PublicHouseId");
 
-                    b.ToTable("BookPublicHouses");
+                    b.ToTable("BookPublicHouse");
                 });
 
             modelBuilder.Entity("Library.DAL.Models.Brochure", b =>

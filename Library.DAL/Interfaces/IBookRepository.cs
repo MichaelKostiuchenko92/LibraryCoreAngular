@@ -8,7 +8,7 @@ namespace Library.DAL.Interfaces
 {
     public interface IBookRepository
     {
-        Task<IEnumerable<Book>> GetAll();
+        Task <IEnumerable<Book>> GetAll();
         Book Get(int id);
         void Create(Book item);
         void Update(Book item);

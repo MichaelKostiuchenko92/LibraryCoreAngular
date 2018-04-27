@@ -16,6 +16,7 @@ namespace Library.DAL.UnitOfWork
         private MagazineRepository _magazineRepository;
         private BookRepository _bookRepository;
         private PublicHouseRepository _publicHouseRepository;
+ 
 
         public LibraryUnitOfWork(LibraryContext context)
         {
@@ -70,8 +71,10 @@ namespace Library.DAL.UnitOfWork
             }
         }
 
+
         public void Save()
         {
+            
             _dbContext.SaveChanges();
         }
 

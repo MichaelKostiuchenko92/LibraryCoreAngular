@@ -28,7 +28,7 @@ namespace Library.BLL.Services
 
         public PublicHouseView GetPublicHouseView(int id)
         {
-            PublicHouse publicHouse = _db.PublicHouses.Get(id);
+            PublicHouse publicHouse =  _db.PublicHouses.Get(id);
             return mapper.Map<PublicHouse, PublicHouseView>(publicHouse);
         }
 

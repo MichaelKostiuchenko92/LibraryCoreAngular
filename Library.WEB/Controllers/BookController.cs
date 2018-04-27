@@ -24,7 +24,7 @@ namespace Library.WEB.Controllers
     [HttpGet]
     public async Task<IEnumerable<BookView>> Get()
     {
-      return await service.GtBookViewModelList();
+      return await  service.GtBookViewModelList();
     }
 
     // GET: api/Book/5

@@ -22,7 +22,7 @@ namespace Library.WEB.Controllers
 
     // GET: api/Library
     [HttpGet]
-    public async Task<IEnumerable<LibraryView>> Get()
+    public async  Task<IEnumerable<LibraryView>> Get()
     {
       return await service.GetLibraryViews();
     }

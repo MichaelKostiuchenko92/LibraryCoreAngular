@@ -1,9 +1,11 @@
 ﻿using Library.DAL.Interfaces;
 using Library.DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
@@ -16,9 +18,9 @@ namespace Library.DAL.Repositories
             _dbContext = context;
         }
 
-        public IEnumerable<Magazine> GetAll()
+        public async Task<IEnumerable<Magazine>> GetAll()
         {
-            return _dbContext.Magazines;
+            return await _dbContext.Magazines.ToListAsync();
         }
 
         public Magazine Get(int id)

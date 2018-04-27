@@ -5,12 +5,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Library.DAL;
+using Library.DAL.Models;
 using Library.DAL.UnitOfWork;
 using Library.WEB.ServiceExtentions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebSockets.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,8 +28,10 @@ namespace Library.WEB
     {
       string connectionString = "Server=(localdb)\\mssqllocaldb;Database=LibraryCore;Trusted_Connection=True;";
       services.AddDbContext<LibraryContext>(options => options.UseSqlServer(connectionString));
-      services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-      var context= services.BuildServiceProvider().GetService<LibraryContext>();
+
+      var context = services.BuildServiceProvider().GetService<LibraryContext>();
+
+     
       services.AddBLLDI();
       services.AddDALDI(context);
       services.AddMvc();
@@ -49,7 +54,6 @@ namespace Library.WEB
       });
 
      
-
       app.UseMvcWithDefaultRoute();
       app.UseDefaultFiles();
       app.UseStaticFiles();

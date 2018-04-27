@@ -11,6 +11,7 @@ namespace Library.DAL.Interfaces
        IBookRepository Books { get; }
        IPublicHouseRepository PublicHouses { get;  }
 
+
         void Save();
     }
 }

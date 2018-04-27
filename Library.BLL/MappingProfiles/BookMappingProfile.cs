@@ -19,6 +19,12 @@ namespace Library.BLL.MappingProfiles
                 .PreserveReferences()
                 .ForMember(b => b.BookPublicHouses, opt => opt.MapFrom(b => b.PublicHouses
                 .Select(ph => new { b.BookId, Book = b, ph.PublicHouseId, PublicHouse = ph })));
+
+            CreateMap<BookView, Book>()
+                .ForMember(b => b.BookId, opt => opt.MapFrom(b => b.BookId))
+                .PreserveReferences()
+                .ForMember(b => b.BookPublicHouses, opt => opt.MapFrom(b => b.PublicHouses
+                .Select(ph => new BookPublicHouse { PublicHouseId = ph.PublicHouseId })));
         }
     }
 }
