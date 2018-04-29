@@ -1,3 +1,4 @@
+import { RegistrationComponent } from './auth/registration/registration.component';
 //system
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,6 +11,7 @@ const appRoutes: Routes = [
 
     { path: '', redirectTo: 'home', pathMatch:'full' },
     { path: 'home', component: HomeComponent },
+    {path:'registration', component:RegistrationComponent},
     { path: 'library',
       children: [
         { path: '', loadChildren: 'app/library/library.module#LibraryModule' },
