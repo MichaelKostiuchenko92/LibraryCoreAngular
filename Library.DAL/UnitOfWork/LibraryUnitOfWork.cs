@@ -1,4 +1,5 @@
 ﻿using Library.DAL.Interfaces;
+using Library.DAL.Models;
 using Library.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,7 +17,7 @@ namespace Library.DAL.UnitOfWork
         private MagazineRepository _magazineRepository;
         private BookRepository _bookRepository;
         private PublicHouseRepository _publicHouseRepository;
-        private IAuthorRepository _authorRepository;
+        private AuthorRepository _authorRepository;
  
 
         public LibraryUnitOfWork(LibraryContext context)
@@ -24,7 +25,7 @@ namespace Library.DAL.UnitOfWork
             _dbContext = context; 
         }
 
-        public IBrochureRepository Brochures
+        public IRepository<Brochure> Brochures
         {
             get
             {
@@ -36,7 +37,7 @@ namespace Library.DAL.UnitOfWork
             }
         }
 
-        public IMagazineRepository Magazines
+        public IRepository<Magazine> Magazines
         {
             get
             {
@@ -48,7 +49,7 @@ namespace Library.DAL.UnitOfWork
             }
         }
 
-        public IBookRepository Books
+        public IRepository<Book> Books
         {
             get
             {
@@ -60,7 +61,7 @@ namespace Library.DAL.UnitOfWork
             }
         }
 
-        public IPublicHouseRepository PublicHouses
+        public IRepository<PublicHouse> PublicHouses
         {
             get
             {
@@ -72,7 +73,7 @@ namespace Library.DAL.UnitOfWork
             }
         }
 
-        public IAuthorRepository Authors
+        public IRepository<Author> Authors
         {
             get
             {

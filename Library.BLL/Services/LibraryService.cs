@@ -15,9 +15,9 @@ namespace Library.BLL.Services
         private IUnitOfWork _db;
         private IMapper mapper;
 
-        public LibraryService(IUnitOfWork uow, IMapper mapper)
+        public LibraryService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _db = uow;
+            _db = unitOfWork;
             this.mapper = mapper;
         }
 

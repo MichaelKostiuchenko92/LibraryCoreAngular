@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
-    public class BookRepository : IBookRepository
+    public class BookRepository : Repository<Book>
     {
         private readonly LibraryContext _dbContext;
 
-        public BookRepository(LibraryContext context)
+        public BookRepository(LibraryContext context) : base(context)
         {
             _dbContext = context;
         }
 
-        public async Task<IEnumerable<Book>> GetAll()
+        public override async Task<IEnumerable<Book>> GetAll()
         {
             return await _dbContext.Books
                 .Include(b => b.BookPublicHouses)
@@ -28,7 +28,7 @@ namespace Library.DAL.Repositories
                 .ToListAsync();
         }
 
-        public Book Get(int id)
+        public override Book Get(int id)
         {
             return _dbContext.Books
                 .Include(b => b.BookPublicHouses)
@@ -36,27 +36,12 @@ namespace Library.DAL.Repositories
                 .SingleOrDefault(b => b.BookId == id);
         }
 
-        public void Delete(int id)
+
+        public override void Update(Book book)
         {
-            Book book = _dbContext.Books.Find(id);
-            if (book != null)
-            {
-                _dbContext.Books.Remove(book);
-            }
-        }
-
-
-        public void Update(Book book)
-        {
-
             var current = Get(book.BookId);
             _dbContext.Entry(current).CurrentValues.SetValues(book);
-         
         }
 
-        public void Create(Book book)
-        {
-            _dbContext.Books.Add(book);
-        }
     }
 }

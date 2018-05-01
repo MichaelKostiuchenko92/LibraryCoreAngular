@@ -9,43 +9,21 @@ using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
-    public class PublicHouseRepository : IPublicHouseRepository
+    public class PublicHouseRepository : Repository<PublicHouse>
     {
         private LibraryContext _dbContext;
 
-        public PublicHouseRepository(LibraryContext context)
+        public PublicHouseRepository(LibraryContext context) : base (context)
         {
             _dbContext = context;
         }
 
-        public async Task<IEnumerable<PublicHouse>> GetAll()
-        {
-            return await _dbContext.PublicHouses.ToListAsync();
-        }
 
-        public PublicHouse Get(int id)
-        {
-            return _dbContext.PublicHouses.FirstOrDefault(x => x.PublicHouseId == id);
-        }
-
-        public void Create(PublicHouse publicHouse)
-        {
-            _dbContext.PublicHouses.Add(publicHouse);
-        }
-
-        public void Update(PublicHouse publicHouse)
+        public override void Update(PublicHouse publicHouse)
         {
             var current = Get(publicHouse.PublicHouseId);
             _dbContext.Entry(current).CurrentValues.SetValues(publicHouse);
         }
 
-        public void Delete(int id)
-        {
-            PublicHouse publicHouse = _dbContext.PublicHouses.Find(id);
-            if (publicHouse != null)    
-            {
-                _dbContext.PublicHouses.Remove(publicHouse);
-            }
-        }
     }
 }

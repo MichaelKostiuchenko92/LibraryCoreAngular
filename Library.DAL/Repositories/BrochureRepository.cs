@@ -9,44 +9,20 @@ using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
-    public class BrochureRepository : IBrochureRepository
+    public class BrochureRepository : Repository<Brochure>
     {
         private LibraryContext _dbCcontext;
 
-        public BrochureRepository(LibraryContext context)
+        public BrochureRepository(LibraryContext context) : base(context)
         {
             _dbCcontext = context;
         }
 
-        public async Task<IEnumerable<Brochure>> GetAll()
-        {
-            return await _dbCcontext.Brochures.ToListAsync();
-        }
-
-        public Brochure Get(int id)
-        {
-          //return _dbCcontext.Brochures.Find(id);
-            return _dbCcontext.Brochures.FirstOrDefault(x => x.BrochureId == id);
-        }
-
-        public void Create (Brochure brochure)
-        {
-            _dbCcontext.Brochures.Add(brochure);
-        }
-
-        public void Update (Brochure brochure)
+       
+        public override void Update (Brochure brochure)
         {
             var current = Get(brochure.BrochureId);
             _dbCcontext.Entry(current).CurrentValues.SetValues(brochure);
-        }
-
-        public void Delete(int id)
-        {
-            Brochure brochure = _dbCcontext.Brochures.Find(id);
-            if (brochure != null)
-            {
-                _dbCcontext.Brochures.Remove(brochure);
-            }
         }
     }
 }
