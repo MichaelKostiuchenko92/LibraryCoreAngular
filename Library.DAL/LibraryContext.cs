@@ -1,4 +1,5 @@
 ﻿using Library.DAL.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Library.DAL
         public DbSet<Author> Authors { get; set; }
 
 
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,5 +46,9 @@ namespace Library.DAL
                .WithMany(a => a.BookAuthors)
                .HasForeignKey(ba => ba.AuthorId);
         }
-    }
+
+
+
+        
+        }
 }

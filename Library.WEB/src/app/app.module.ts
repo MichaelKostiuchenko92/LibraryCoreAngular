@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router"
 import { HttpClient, HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditService } from './home/edit.service';
 
 
@@ -20,6 +20,9 @@ import { AppComponent } from './app.component';
 import { NavmenuComponent } from './navmenu/navmenu.component';
 import { HomeComponent } from './home/home.component';
 import { routing } from './app-routing.module';
+import { RegistrationComponent } from './auth/registration/registration.component';
+import { ConstHelperService } from './auth/registration/hostHelper.service';
+import { UserService } from './auth/registration/userService';
 
 
 
@@ -28,6 +31,7 @@ import { routing } from './app-routing.module';
     AppComponent,
     NavmenuComponent,
     HomeComponent,
+    RegistrationComponent,
   ],
   imports: [
     HttpClientModule,
@@ -37,9 +41,12 @@ import { routing } from './app-routing.module';
     RouterModule,
     LibraryModule,
     FormsModule,
-    GridModule
+    GridModule,
+    ReactiveFormsModule,
+
   ],
-  providers: [
+  providers: [ ConstHelperService ,
+    UserService,
     {
     deps: [HttpClient],
     provide: EditService,

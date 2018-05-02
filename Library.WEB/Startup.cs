@@ -29,9 +29,26 @@ namespace Library.WEB
       string connectionString = "Server=(localdb)\\mssqllocaldb;Database=LibraryCore;Trusted_Connection=True;";
       services.AddDbContext<LibraryContext>(options => options.UseSqlServer(connectionString));
 
+      services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
       var context = services.BuildServiceProvider().GetService<LibraryContext>();
 
-     
+
+      services.AddIdentity<AppUser, IdentityRole>
+               (o =>
+               {
+                  // configure identity options
+                  o.Password.RequireDigit = false;
+                 o.Password.RequireLowercase = false;
+                 o.Password.RequireUppercase = false;
+                 o.Password.RequireNonAlphanumeric = false;
+                 o.Password.RequiredLength = 6;
+               })
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultTokenProviders();
+
+
+
       services.AddBLLDI();
       services.AddDALDI(context);
       services.AddMvc();
