@@ -47,12 +47,29 @@
             <span class='glyphicon glyphicon-th-list'></span> All Library
           </a>
         </li>
+      </ul>
+
+      <ul *ngIf="status != true" class='nav navbar-nav'>
         <li [routerLinkActive]="['link-active']">
           <a [routerLink]="['registration']">
             <span class='glyphicon glyphicon-user'></span> Registration
           </a>
         </li>
+        <li [routerLinkActive]="['link-active']">
+          <a [routerLink]="['login']">
+            <span class='glyphicon glyphicon-user'></span> LogIn
+          </a>
+        </li>
       </ul>
+
+      <ul *ngIf="status==true" class='nav navbar-nav'>
+        <li>
+          <a (click)="logout()" href="#">
+            <span class='glyphicon glyphicon-user'></span> LogOut
+          </a>
+        </li>
+      </ul>>
+
     </div>
   </div>
 </div>

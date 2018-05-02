@@ -1,8 +1,9 @@
+
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "./userService";
+import { UserService } from './../services/userService';
 import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { UserSendModel } from "./userSendModel";
+import { UserSendModel } from './../models/userSendModel';
 
 
 @Component({

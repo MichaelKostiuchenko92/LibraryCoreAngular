@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Library.BLL.Services;
 using Library.ViewModels.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.WEB.Controllers
 {
+  
   [Produces("application/json")]
   [Route("api/Author")]
   public class AuthorController : Controller

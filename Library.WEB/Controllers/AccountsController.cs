@@ -6,12 +6,14 @@ using AutoMapper;
 using Library.DAL;
 using Library.DAL.Models;
 using Library.ViewModels.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.WEB.Controllers
 {
+  
   [Route("api/[controller]")]
   public class AccountsController : Controller
   {
