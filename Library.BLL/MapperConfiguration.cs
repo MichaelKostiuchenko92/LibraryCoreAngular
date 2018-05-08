@@ -18,6 +18,7 @@ namespace Library.BLL
                 cfg.AddProfile(new PublicHouseMappingProfile());
                 cfg.AddProfile(new LibraryMappingProfile());
                 cfg.AddProfile(new AuthorMappingProfile());
+                cfg.AddProfile(new ViewModelToEntityMappingProfile());
             });
 
             return config;

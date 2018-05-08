@@ -1,5 +1,6 @@
-import { AllLibraryService } from './all-library.service';
-import { AllLibrary } from './all-library.model';
+import { AllLibrary } from './../models/all-library.model';
+import { AllLibraryService } from './../services/all-library.service';
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

@@ -14,7 +14,7 @@ namespace Library.DAL
         {
         }
 
-        public DbSet<JobSeeker> JobSeekers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
 
     }

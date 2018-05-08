@@ -21,12 +21,16 @@ namespace Library.DAL.Migrations.ApplicationDb
                 .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Library.DAL.Models.JobSeeker", b =>
+            modelBuilder.Entity("Library.DAL.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Gender");
+
                     b.Property<string>("IdentityId");
+
+                    b.Property<string>("Locale");
 
                     b.Property<string>("Location");
 
@@ -34,7 +38,7 @@ namespace Library.DAL.Migrations.ApplicationDb
 
                     b.HasIndex("IdentityId");
 
-                    b.ToTable("JobSeekers");
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -205,14 +209,16 @@ namespace Library.DAL.Migrations.ApplicationDb
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
 
                     b.ToTable("AppUser");
 
                     b.HasDiscriminator().HasValue("AppUser");
                 });
 
-            modelBuilder.Entity("Library.DAL.Models.JobSeeker", b =>
+            modelBuilder.Entity("Library.DAL.Models.Customer", b =>
                 {
                     b.HasOne("Library.DAL.Models.AppUser", "Identity")
                         .WithMany()

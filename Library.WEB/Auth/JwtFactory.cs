@@ -1,12 +1,10 @@
-using Library.DAL.Options;
-using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using Library.WEB.IdentityView.Options;
+using Microsoft.Extensions.Options;
 
 namespace Library.WEB.Auth
 {

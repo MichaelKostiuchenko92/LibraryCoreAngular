@@ -1,7 +1,7 @@
+import { Brochure } from './../models/brochure.model';
+import { BrochureService } from './../services/brochure.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BrochureService } from './brochure.service';
-import { Brochure } from './brochure.model';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 

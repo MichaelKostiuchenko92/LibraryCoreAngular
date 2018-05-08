@@ -1,5 +1,6 @@
-import { Magazine } from './magazine.model';
-import { MagazineService } from './magazine.service';
+import { MagazineService } from './../services/magazine.service';
+import { Magazine } from './../models/magazine.model';
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

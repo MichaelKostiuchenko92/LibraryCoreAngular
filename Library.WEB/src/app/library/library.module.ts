@@ -13,12 +13,12 @@ import { ButtonsModule } from "@progress/kendo-angular-buttons";
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
 //services
-import { BrochureService } from './brochure/brochure.service';
-import { MagazineService } from './magazine/magazine.service';
-import { BookService } from './book/book.service';
-import { PublicHouseService } from './public-house/public-house.service';
-import { AllLibraryService } from './all-library/all-library.service';
-import { AuthorService } from './author/author.service';
+import { BrochureService } from './services/brochure.service';
+import { MagazineService } from './services/magazine.service';
+import { BookService } from './services/book.service';
+import { PublicHouseService } from './services/public-house.service';
+import { AllLibraryService } from './services/all-library.service';
+import { AuthorService } from './services/author.service';
 
 //components
 import { BrochureComponent } from './brochure/brochure.component';

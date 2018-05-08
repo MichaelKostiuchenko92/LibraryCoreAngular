@@ -1,5 +1,6 @@
-import { PublicHouseService } from './public-house.service';
-import { PublicHouse } from './public-house.model';
+import { PublicHouse } from './../models/public-house.model';
+import { PublicHouseService } from './../services/public-house.service';
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

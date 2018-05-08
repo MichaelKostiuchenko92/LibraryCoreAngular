@@ -22,7 +22,7 @@ namespace Library.DAL.Migrations.ApplicationDb
                 .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Library.DAL.Models.JobSeeker", b =>
+            modelBuilder.Entity("Library.DAL.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -213,7 +213,7 @@ namespace Library.DAL.Migrations.ApplicationDb
                     b.HasDiscriminator().HasValue("AppUser");
                 });
 
-            modelBuilder.Entity("Library.DAL.Models.JobSeeker", b =>
+            modelBuilder.Entity("Library.DAL.Models.Customer", b =>
                 {
                     b.HasOne("Library.DAL.Models.AppUser", "Identity")
                         .WithMany()

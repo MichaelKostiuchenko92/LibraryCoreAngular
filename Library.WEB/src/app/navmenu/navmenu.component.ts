@@ -1,31 +1,34 @@
-import { AuthService } from './../auth/services/auth.service';
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import {Subscription} from 'rxjs/Subscription';
 
-import { OnInit, OnDestroy, Component } from "@angular/core";
-import { Subscription } from "rxjs/Subscription";
+import { UserService } from '../shared/services/user.service';
+
 
 @Component({
   selector: 'nav-menu',
   templateUrl: './navmenu.component.html',
-  styleUrls: ['./navmenu.component.css'],
-  providers: [AuthService]
+  styleUrls: ['./navmenu.component.css']
 })
-export class NavmenuComponent implements OnInit, OnDestroy {
+export class NavmenuComponent implements OnInit,OnDestroy  {
 
   status: boolean;
-  subscription: Subscription;
+  subscription:Subscription;
+ 
 
-  constructor(private authService:AuthService) {
-   }
-
-   logout() {
-    this.authService.logout();       
-}
-
-  ngOnInit() {
-    this.subscription = this.authService.authNavStatus.subscribe(status => this.status = status);
+  constructor(private userService:UserService) {     
   }
 
+  logout() {
+    this.userService.logout();       
+ }
+
+ ngOnInit() {
+   this.subscription = this.userService.authNavStatus$.subscribe(status => this.status = status);
+ }
+
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+   // prevent memory leak when component is destroyed
+   this.subscription.unsubscribe();
+ }
 }
-}
+

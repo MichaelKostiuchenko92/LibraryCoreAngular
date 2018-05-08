@@ -1,9 +1,10 @@
-import { AuthorService } from './../author/author.service';
-import { Author } from './../author/author.model';
-import { PublicHouseService } from './../public-house/public-house.service';
-import { PublicHouse } from './../public-house/public-house.model';
-import { Book } from './book.model';
-import { BookService } from './book.service';
+import { BookService } from './../services/book.service';
+import { Book } from './../models/book.model';
+import { PublicHouse } from './../models/public-house.model';
+import { PublicHouseService } from './../services/public-house.service';
+import { Author } from './../models/author.model';
+import { AuthorService } from './../services/author.service';
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

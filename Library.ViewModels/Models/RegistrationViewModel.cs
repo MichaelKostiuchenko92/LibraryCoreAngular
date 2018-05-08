@@ -4,13 +4,12 @@ using System.Text;
 
 namespace Library.ViewModels.Models
 {
-   public class RegistrationViewModel
+    public class RegistrationViewModel
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string Location { get; set; }
-
-        public bool Exist { get; set; }
     }
 }

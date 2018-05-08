@@ -1,6 +1,5 @@
-import { AuthorService } from './author.service';
-import { Author } from './author.model';
-
+import { AuthorService } from './../services/author.service';
+import { Author } from './../models/author.model';
 
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
