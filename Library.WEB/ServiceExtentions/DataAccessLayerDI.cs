@@ -1,13 +1,10 @@
 using Library.BLL.Services;
 using Library.DAL;
 using Library.DAL.Interfaces;
-using Library.DAL.UnitOfWork;
-using Microsoft.EntityFrameworkCore;
+using Library.DAL.Models;
+using Library.DAL.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Library.WEB.ServiceExtentions
 {
@@ -29,10 +26,18 @@ namespace Library.WEB.ServiceExtentions
 
     public static void AddDALDI(this IServiceCollection service, LibraryContext libraryContext)
     {
-      service.AddTransient<IUnitOfWork>(provider =>
-      {
-        return new LibraryUnitOfWork(libraryContext);
-      });
+      //service.AddSingleton<IRepository<Magazine>>(new MagazineRepository(libraryContext));
+      //service.AddSingleton<IRepository<Book>>(new BookRepository(libraryContext));
+      //service.AddSingleton<IRepository<Author>>(new AuthorRepository(libraryContext));
+      //service.AddSingleton<IRepository<Brochure>>(new BrochureRepository(libraryContext));
+      //service.AddSingleton<IRepository<PublicHouse>>(new PublicHouseRepository(libraryContext));
+
+      service.AddSingleton<AuthorRepository>(new AuthorRepository(libraryContext));
+      service.AddSingleton<BookRepository>(new BookRepository(libraryContext));
+      service.AddSingleton<BrochureRepository>(new BrochureRepository(libraryContext));
+      service.AddSingleton<MagazineRepository>(new MagazineRepository(libraryContext));
+      service.AddSingleton<PublicHouseRepository>(new PublicHouseRepository(libraryContext));
+
     }
   }
 }

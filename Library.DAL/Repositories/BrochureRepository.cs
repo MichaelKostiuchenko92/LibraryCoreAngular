@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
-    public class BrochureRepository : Repository<Brochure>
+    public class BrochureRepository : GenericRepository<Brochure>
     {
         private LibraryContext _dbCcontext;
 
@@ -18,11 +18,5 @@ namespace Library.DAL.Repositories
             _dbCcontext = context;
         }
 
-       
-        public override void Update (Brochure brochure)
-        {
-            var current = Get(brochure.BrochureId);
-            _dbCcontext.Entry(current).CurrentValues.SetValues(brochure);
-        }
     }
 }

@@ -21,6 +21,8 @@ using Library.DAL.Models;
 using Library.WEB.IdentityView.Options;
 using Library.WEB.Helpers;
 using Library.WEB.Auth;
+using Library.DAL.Repositories;
+using Library.DAL.Interfaces;
 
 namespace Library.WEB
 {
@@ -41,14 +43,17 @@ namespace Library.WEB
     // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
     public void ConfigureServices(IServiceCollection services)
     {
-      string connectionString = "Server=(localdb)\\mssqllocaldb;Database=LibraryCore;Trusted_Connection=True;";
+      //string connectionString = "Server=(localdb)\\mssqllocaldb;Database=LibraryCore;Trusted_Connection=True;";
+      string connectionString = Configuration.GetConnectionString("DefaultConnection");
       services.AddDbContext<LibraryContext>(options => options.UseSqlServer(connectionString));
+      //services.AddSingleton<LibraryContext>();
+      services.TryAddTransient<LibraryContext>();
       services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
       var context = services.BuildServiceProvider().GetService<LibraryContext>();
-      services.AddBLLDI();
       services.AddDALDI(context);
+      services.AddBLLDI();
       services.AddMvc();
-
+      
       services.AddSingleton<IJwtFactory, JwtFactory>();
 
 
@@ -120,7 +125,7 @@ namespace Library.WEB
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    public  void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
       app.Use(async (context, next) =>
       {
@@ -133,7 +138,6 @@ namespace Library.WEB
           await next();
         }
       });
-
       
       app.UseMvcWithDefaultRoute();
       app.UseDefaultFiles();

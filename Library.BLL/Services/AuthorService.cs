@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
+using Library.DAL.Repositories;
 using Library.ViewModels.Models;
 using System;
 using System.Collections.Generic;
@@ -11,45 +12,43 @@ namespace Library.BLL.Services
 {
     public class AuthorService
     {
-        private IUnitOfWork _db;
+        //private IRepository<Author> _db;
+        private AuthorRepository _db;
         private IMapper mapper;
 
-        public AuthorService(IUnitOfWork unitOfWork, IMapper mapper)
+        public AuthorService(AuthorRepository repo, IMapper mapper)
         {
-            _db = unitOfWork;
+            _db = repo;
             this.mapper = mapper;
         }
 
         public async Task<IEnumerable<AuthorView>> GetAuthorViewList()
         {
-            IEnumerable<Author> authors = await _db.Authors.GetAll();
+            IEnumerable<Author> authors = await _db.GetAll();
             return mapper.Map<IEnumerable<Author>, IEnumerable<AuthorView>>(authors);
         }
 
         public AuthorView GetAuthorView(int id)
         {
-            Author author = _db.Authors.Get(id);
+            Author author = _db.GetById(id);
             return mapper.Map<Author, AuthorView>(author);
         }
 
         public void DeleteAuthor(int id)
         {
-            _db.Authors.Delete(id);
-            _db.Save();
+            _db.Delete(id);
         }
 
         public void UpdateAuthor(AuthorView authorView)
         {
             Author author = mapper.Map<AuthorView, Author>(authorView);
-            _db.Authors.Update(author);
-            _db.Save();
+            _db.Update(authorView.AuthorId, author);
         }
 
         public void CreateAuthor(AuthorView authorView)
         {
             Author author = mapper.Map<AuthorView, Author>(authorView);
-            _db.Authors.Create(author);
-            _db.Save();
+            _db.Create(author);
         }
     }
 }

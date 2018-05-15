@@ -28,6 +28,7 @@ namespace Library.DAL
                 .HasOne(bp => bp.Book)
                 .WithMany(b => b.BookPublicHouses)
                 .HasForeignKey(bp => bp.BookId);
+                
 
             modelBuilder.Entity<BookPublicHouse>()
                 .HasOne(bp => bp.PublicHouse)
@@ -37,7 +38,7 @@ namespace Library.DAL
             modelBuilder.Entity<BookAuthor>().HasKey(ba => new { ba.BookId, ba.AuthorId });
 
             modelBuilder.Entity<BookAuthor>()
-                .HasOne(ba => ba.Book)
+                .HasOne(ba => ba.Book) 
                .WithMany(b => b.BookAuthors)
                .HasForeignKey(ba => ba.BookId);
 

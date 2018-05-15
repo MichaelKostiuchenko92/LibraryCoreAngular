@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
-    public class BookRepository : Repository<Book>
+    public class BookRepository : GenericRepository<Book>
     {
         private readonly LibraryContext _dbContext;
 
@@ -28,7 +28,7 @@ namespace Library.DAL.Repositories
                 .ToListAsync();
         }
 
-        public override Book Get(int id)
+        public override Book GetById(int id)
         {
             return _dbContext.Books
                 .Include(b => b.BookPublicHouses)
@@ -37,11 +37,12 @@ namespace Library.DAL.Repositories
         }
 
 
-        public override void Update(Book book)
-        {
-            var current = Get(book.BookId);
-            _dbContext.Entry(current).CurrentValues.SetValues(book);
-        }
+        //public override void Update(Book book)
+        //{
+        //    var current = Get(book.BookId);
+        //    _dbContext.Entry(current).CurrentValues.SetValues(book);
+        //    _dbContext.SaveChanges();
+        //}
 
     }
 }

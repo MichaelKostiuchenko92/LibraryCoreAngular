@@ -7,6 +7,7 @@ import { HttpClient, HttpClientModule, HttpClientJsonpModule } from '@angular/co
 import { FormsModule } from '@angular/forms';
 import { HttpModule, XHRBackend } from '@angular/http';
 import { AuthenticateXHRBackend } from './authenticate-xhr.backend';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //kendo
 import { GridModule } from '@progress/kendo-angular-grid';
@@ -23,6 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { routing } from './app-routing.module';
 
 import { ConfigService } from './shared/utils/config.service';
+import { AuthGuard } from './account/auth.guard';
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import { ConfigService } from './shared/utils/config.service';
     HttpClientJsonpModule,
     routing,
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     LibraryModule,
     FormsModule,
@@ -43,7 +46,7 @@ import { ConfigService } from './shared/utils/config.service';
     AccountModule,
     HttpModule,
   ],
-  providers: [ConfigService,
+  providers: [ConfigService, AuthGuard,
 { 
   provide: XHRBackend, 
   useClass: AuthenticateXHRBackend

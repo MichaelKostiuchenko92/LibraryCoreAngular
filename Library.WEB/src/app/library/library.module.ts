@@ -1,11 +1,11 @@
 
 //system
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //kendo ui
 import { GridModule} from '@progress/kendo-angular-grid';
@@ -22,25 +22,28 @@ import { AuthorService } from './services/author.service';
 
 //components
 import { BrochureComponent } from './brochure/brochure.component';
-import { LibraryRoutingModule } from './library.routing';
+//import { LibraryRoutingModule } from './library.routing';
 import { BookComponent } from './book/book.component';
 import { MagazineComponent } from './magazine/magazine.component';
 import { PublicHouseComponent } from './public-house/public-house.component';
 import { AllLibraryComponent } from './all-library/all-library.component';
 import { AuthorComponent } from './author/author.component';
+import { libraryRouter } from './library.rout';
+
 
 
 @NgModule({
 
   imports: [
     CommonModule,
-    LibraryRoutingModule,
+    //LibraryRoutingModule,
     HttpClientModule,
     FormsModule,
     GridModule,
     ButtonsModule,
     DropDownsModule,
-    BrowserAnimationsModule
+    //BrowserAnimationsModule,
+    [libraryRouter]
   ],
 
   declarations: [

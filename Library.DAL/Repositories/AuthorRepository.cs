@@ -9,19 +9,13 @@ using System.Threading.Tasks;
 
 namespace Library.DAL.Repositories
 {
-    public class AuthorRepository : Repository<Author>
+    public class AuthorRepository : GenericRepository<Author>
     {
         private readonly LibraryContext _dbContext;
 
         public AuthorRepository(LibraryContext context) : base(context)
         {
             _dbContext = context;
-        }
-
-        public override void Update(Author author)
-        {
-            var current = Get(author.AuthorId);
-            _dbContext.Entry(current).CurrentValues.SetValues(author);
         }
 
     }
